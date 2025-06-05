@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIMainMenu : MonoBehaviour
 {
-    
+    [Header("UIMainMenu - 연결 요소들")]
     [SerializeField] private TextMeshProUGUI jobText;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI levelText;

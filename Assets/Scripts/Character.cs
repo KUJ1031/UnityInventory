@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -11,12 +9,18 @@ public class Character : MonoBehaviour
     public int MaxExp { get; private set; }
     public int Level { get; private set; }
     public string Explain { get; private set; }
+
     public float Attack { get; private set; }
     public float Defense { get; private set; }
     public float Hp { get; private set; }
     public float Critical { get; private set; }
 
-    public Character(string job, string name, int currentExp, int maxExp, int level, string explain, int attack, int defense, int hp, int critical)
+    public List<ItemData> Inventory { get; private set; } = new List<ItemData>();
+
+    private List<ItemData> equippedItems = new List<ItemData>();
+
+    public Character(string job, string name, int currentExp, int maxExp, int level, string explain,
+        int attack, int defense, int hp, int critical, List<ItemData> initialInventory = null)
     {
         Job = job;
         CharacterName = name;
@@ -28,11 +32,21 @@ public class Character : MonoBehaviour
         Defense = defense;
         Hp = hp;
         Critical = critical;
+
+        if (initialInventory != null)
+            Inventory = new List<ItemData>(initialInventory);
+    }
+
+    public void AddItem(ItemData item)
+    {
+        if (item != null)
+            Inventory.Add(item);
     }
 
     public void EquipItem(ItemData item)
     {
-        if (item == null || item.equipableData == null) return;
+        if (item == null || item.equipableData == null || IsEquipped(item))
+            return;
 
         switch (item.equipableData.type)
         {
@@ -49,11 +63,13 @@ public class Character : MonoBehaviour
                 Critical += item.equipableData.value;
                 break;
         }
-    }
 
+        equippedItems.Add(item);
+    }
     public void UnequipItem(ItemData item)
     {
-        if (item == null || item.equipableData == null) return;
+        if (item == null || item.equipableData == null || !IsEquipped(item))
+            return;
 
         switch (item.equipableData.type)
         {
@@ -70,5 +86,11 @@ public class Character : MonoBehaviour
                 Critical -= item.equipableData.value;
                 break;
         }
+
+        equippedItems.Remove(item);
+    }
+    public bool IsEquipped(ItemData item)
+    {
+        return equippedItems.Contains(item);
     }
 }
