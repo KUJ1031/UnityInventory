@@ -29,7 +29,7 @@ public class UIInventory : MonoBehaviour
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI CriticalText;
 
-    [Header("장착/해제 버튼")]
+    [Header("장착/해제")]
     public TextMeshProUGUI equipButtonText;
 
     [Header("선택된 아이템")]
@@ -100,6 +100,7 @@ public class UIInventory : MonoBehaviour
             character.UnequipItem(selectedItem);
             SetSlotEquippedState(selectedItem, false);
             equipButtonText.text = "장착";
+
             Debug.Log($"{selectedItem.displayName} 해제됨!");
         }
         else
@@ -119,7 +120,11 @@ public class UIInventory : MonoBehaviour
         foreach (var slot in slots)
         {
             if (slot.item == item)
+            {
+
                 return slot.equipped;
+            }
+                
         }
         return false;
     }

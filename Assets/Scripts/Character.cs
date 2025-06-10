@@ -1,21 +1,23 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+[System.Serializable]
+public class Character
 {
-    public string Job { get; private set; }
-    public string CharacterName { get; private set; }
-    public int CurrentExp { get; private set; }
-    public int MaxExp { get; private set; }
-    public int Level { get; private set; }
-    public string Explain { get; private set; }
+    public string Job;
+    public string CharacterName;
+    public int CurrentExp;
+    public int MaxExp;
+    public int Level;
+    public string Explain;
 
-    public float Attack { get; private set; }
-    public float Defense { get; private set; }
-    public float Hp { get; private set; }
-    public float Critical { get; private set; }
+    public float Attack;
+    public float Defense;
+    public float Hp;
+    public float Critical;
 
-    public List<ItemData> Inventory { get; private set; } = new List<ItemData>();
+    // 필요한 경우 Inventory도 public 필드로 선언
+    public List<ItemData> Inventory = new List<ItemData>();
 
     private List<ItemData> equippedItems = new List<ItemData>();
 

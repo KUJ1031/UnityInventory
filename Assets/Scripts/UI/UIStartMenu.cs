@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIMainMenu : MonoBehaviour
+public class UIStartMenu : MonoBehaviour
 {
-    [Header("UIMainMenu - 연결 요소들")]
+    [Header("UIStartMenu - 연결 요소들")]
     [SerializeField] private TextMeshProUGUI jobText;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI levelText;
@@ -13,29 +13,12 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI maxExpText;
     [SerializeField] private TextMeshProUGUI explainText;
 
-    private DataSaveLoad dataSaveLoad;
-
-    private void Start()
-    {
-        Character loadedCharacter = FindObjectOfType<DataSaveLoad>()?.LoadCharacterData();
-        //Character loadedPlayer = dataSaveLoad.LoadCharacterData();
-
-        if (loadedCharacter != null)
-        {
-            UpdateUI(loadedCharacter);
-        }
-        else
-        {
-            Debug.LogWarning("캐릭터 데이터를 불러오지 못했습니다.");
-        }
-    }
-
-    private void UpdateUI(Character player)
+    public void ShowCharacterExplain(Character player)
     {
         jobText.text = $"직업 :  {player.Job}";
         nameText.text = $"이름 : {player.CharacterName}";
         levelText.text = $"레벨 : {player.Level}";
-        crrentExtText.text = player.CurrentExp.ToString() + "/";
+        crrentExtText.text = player.CurrentExp.ToString() + "/  ";
         maxExpText.text = player.MaxExp.ToString();
         explainText.text = player.Explain;
     }

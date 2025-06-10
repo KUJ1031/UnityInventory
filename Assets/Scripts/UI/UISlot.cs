@@ -14,8 +14,12 @@ public class UISlot : MonoBehaviour
 
     public UIInventory inventory;
 
+    public GameObject equipImage;
+    private ItemData currentEquippedItem;
+
     public int index;
     public bool equipped;
+
     public int quantity;
 
     private void Awake()
@@ -30,13 +34,12 @@ public class UISlot : MonoBehaviour
 
     public void Set()
     {
-       // icon.gameObject.SetActive(true);
-       // icon.sprite = item.icon;
-        //quantityText.text = quantity > 1 ? quantity.ToString() : string.Empty;
-        //if (outline != null)
-        //{
-        //    outline.enabled = equipped;
-        //}
+       // quantityText.text = quantity > 1 ? quantity.ToString() : string.Empty;
+        if (outline != null)
+        {
+            outline.enabled = equipped;
+        }
+        equipImage?.gameObject.SetActive(equipped);
     }
 
     public void Clear()

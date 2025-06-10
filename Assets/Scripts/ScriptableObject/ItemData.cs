@@ -35,9 +35,6 @@ public class ItemData : ScriptableObject
     public bool canStack;
     public int maxStackAmount = 1;
 
-    [Header("Equip")]
-    public GameObject equipPrefab;
-
     [Header("Equipable Stats")]
     public ItemDataEquipable equipableData;
 }
