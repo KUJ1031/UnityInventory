@@ -19,7 +19,7 @@ public class Character
     // 필요한 경우 Inventory도 public 필드로 선언
     public List<ItemData> Inventory = new List<ItemData>();
 
-    private List<ItemData> equippedItems = new List<ItemData>();
+    public List<ItemData> equippedItems = new List<ItemData>();
 
     public Character(string job, string name, int currentExp, int maxExp, int level, string explain,
         int attack, int defense, int hp, int critical, List<ItemData> initialInventory = null)
@@ -48,6 +48,13 @@ public class Character
     public void EquipItem(ItemData item)
     {
         if (item == null || item.equipableData == null || IsEquipped(item))
+            return;
+        if (item.equipableData == null)
+        {
+            Debug.LogWarning($"EquipItem 호출 시 {item.name}의 equipableData가 null입니다.");
+            return;
+        }
+        if (IsEquipped(item))
             return;
 
         switch (item.equipableData.type)
@@ -93,6 +100,22 @@ public class Character
     }
     public bool IsEquipped(ItemData item)
     {
+        if (equippedItems == null)
+        {
+            Debug.LogError("equippedItems 리스트가 null입니다!");
+            return false;
+        }
         return equippedItems.Contains(item);
+    }
+
+    public float GetAddStatus(EquipableType type)
+    {
+        float total = 0f;
+        foreach (var item in equippedItems)
+        {
+            if (item.equipableData.type == type)
+                total += item.equipableData.value;
+        }
+        return total;
     }
 }

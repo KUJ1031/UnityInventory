@@ -11,7 +11,7 @@ public class CharacterImageSwitcher : MonoBehaviour
     private int currentIndex = 0;
     public UIStartMenu uiStartMenu;
 
-    public DataSaveLoad dataSaveLoad; // 인스펙터에 연결
+    
 
     private void Start()
     {
@@ -55,7 +55,7 @@ public class CharacterImageSwitcher : MonoBehaviour
         GameManager.Instance.SelectCharacter(currentIndex);
 
         uiStartMenu.ShowCharacterExplain(selectedCharacter);
-        dataSaveLoad.SaveCharacterData(selectedCharacter); // 저장 실행
+        DataSaveLoad.Instance.SaveCharacterData(selectedCharacter); // 저장 실행
         SceneManager.LoadScene("MainScene"); // 게임 씬으로 전환
         
     }

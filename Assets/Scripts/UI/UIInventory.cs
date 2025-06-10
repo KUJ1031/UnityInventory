@@ -79,7 +79,7 @@ public class UIInventory : MonoBehaviour
 
     public void ShowStatusInfo(ItemData item)
     {
-        var character = GameManager.Instance.PlayerCharacter;
+        var character = GameManager.Instance?.PlayerCharacter;
 
         attackText.text = "공격력 : " + character.Attack.ToString();
         defenseText.text = "방어력 : " + character.Defense.ToString();
@@ -91,7 +91,7 @@ public class UIInventory : MonoBehaviour
     {
         if (selectedItem == null) return;
 
-        var character = GameManager.Instance.PlayerCharacter;
+        var character = GameManager.Instance?.PlayerCharacter;
 
         bool isEquipped = IsItemEquipped(selectedItem);
 

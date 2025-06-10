@@ -8,18 +8,20 @@ public class GameManager : MonoBehaviour
     public Character PlayerCharacter { get; private set; }
     public List<Character> characterList = new List<Character>();
     public Character SelectedCharacter { get; private set; }
+    public DataSaveLoad dataSaveLoad; // 인스펙터에 연결
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-           // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+        PlayerCharacter = FindObjectOfType<DataSaveLoad>()?.LoadCharacterData();
         SetData();
     }
 

@@ -18,6 +18,7 @@ public class DataSaveLoad : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+
         filePath = Path.Combine(Application.persistentDataPath, "characterData.json");
         Debug.Log("DataSaveLoad Awake 실행됨. 경로: " + filePath);
     }

@@ -2293,7 +2293,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ccffcf7ccaa2d194f9bbc71b97153a51, type: 3}
   characterImage: {fileID: 700711322}
   uiStartMenu: {fileID: 784762322}
-  dataSaveLoad: {fileID: 1553685485}
 --- !u!4 &1603990414
 Transform:
   m_ObjectHideFlags: 0
@@ -2488,6 +2487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterList: []
+  dataSaveLoad: {fileID: 1553685485}
 --- !u!1 &1867448140
 GameObject:
   m_ObjectHideFlags: 0

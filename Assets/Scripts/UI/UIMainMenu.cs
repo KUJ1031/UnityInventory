@@ -13,12 +13,16 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI maxExpText;
     [SerializeField] private TextMeshProUGUI explainText;
 
+    [SerializeField] private UnityEngine.UI.Image characterImage;
+    [SerializeField] private Sprite warriorSprite;
+    [SerializeField] private Sprite devilSprite;
+    [SerializeField] private Sprite knightSprite;
+
     private DataSaveLoad dataSaveLoad;
 
     private void Start()
     {
         Character loadedCharacter = FindObjectOfType<DataSaveLoad>()?.LoadCharacterData();
-        //Character loadedPlayer = dataSaveLoad.LoadCharacterData();
 
         if (loadedCharacter != null)
         {
@@ -38,5 +42,21 @@ public class UIMainMenu : MonoBehaviour
         crrentExtText.text = player.CurrentExp.ToString() + "/";
         maxExpText.text = player.MaxExp.ToString();
         explainText.text = player.Explain;
+
+        switch (player.Job)
+        {
+            case "전사":
+                characterImage.sprite = warriorSprite;
+                break;
+            case "악마":
+                characterImage.sprite = devilSprite;
+                break;
+            case "기사":
+                characterImage.sprite = knightSprite;
+                break;
+            default:
+                Debug.LogWarning("알 수 없는 직업: " + player.Job);
+                break;
+        }
     }
 }
