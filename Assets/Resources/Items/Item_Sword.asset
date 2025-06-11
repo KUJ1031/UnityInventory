@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2669908729f3a0043803c95084c504f9, type: 3}
   m_Name: Item_Sword
   m_EditorClassIdentifier: 
+  itemId: 
   displayName: "\uC5D1\uC2A4\uCE7C\uB9AC\uBC84"
   description: "\uB0A0\uCE74\uB86D\uC2B5\uB2C8\uB2E4."
   type: 0
   icon: {fileID: 21300000, guid: 6cd9f1d94f48145428773d838376fcb1, type: 3}
   canStack: 0
   maxStackAmount: 1
-  equipPrefab: {fileID: 0}
   equipableData:
     type: 0
     value: 10

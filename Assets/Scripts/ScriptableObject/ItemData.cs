@@ -25,16 +25,19 @@ public class ItemDataEquipable
 [CreateAssetMenu(fileName = "NewItem", menuName = "New Item")]
 public class ItemData : ScriptableObject
 {
-    [Header("Info")]
+    [Header("식별자")]
+    public string itemId;  // 저장/불러오기용 ID (예: "sword_001")
+
+    [Header("기본 정보")]
     public string displayName;
     public string description;
     public ItemType type;
     public Sprite icon;
 
-    [Header("Stacking")]
+    [Header("스택 관련")]
     public bool canStack;
     public int maxStackAmount = 1;
 
-    [Header("Equipable Stats")]
+    [Header("장비 능력치")]
     public ItemDataEquipable equipableData;
 }

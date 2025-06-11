@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
+    public UIInventory inventory;
     public void OpenStatus()
     {
         UIManager.Instance.UIStatus.SetActive(true);
@@ -19,5 +20,14 @@ public class ButtonManager : MonoBehaviour
     public void CloseInventory()
     {
         UIManager.Instance.UIInventory.SetActive(false);
+    }
+
+    public void LoadItemInfo()
+    {
+        var loadedData = DataSaveLoad.Instance.LoadInventory();
+        if (loadedData != null)
+        {
+            inventory.ApplyLoadedInventory(loadedData);
+        }
     }
 }

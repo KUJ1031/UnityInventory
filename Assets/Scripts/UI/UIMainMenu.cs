@@ -18,8 +18,6 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private Sprite devilSprite;
     [SerializeField] private Sprite knightSprite;
 
-    private DataSaveLoad dataSaveLoad;
-
     private void Start()
     {
         Character loadedCharacter = FindObjectOfType<DataSaveLoad>()?.LoadCharacterData();

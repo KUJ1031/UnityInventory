@@ -11,6 +11,11 @@ public class Character
     public int Level;
     public string Explain;
 
+    private float baseAttack;
+    private float baseDefense;
+    private float baseHp;
+    private float baseCritical;
+
     public float Attack;
     public float Defense;
     public float Hp;
@@ -35,6 +40,11 @@ public class Character
         Hp = hp;
         Critical = critical;
 
+        baseAttack = attack;
+        baseDefense = defense;
+        baseHp = hp;
+        baseCritical = critical;
+
         if (initialInventory != null)
             Inventory = new List<ItemData>(initialInventory);
     }
@@ -56,6 +66,11 @@ public class Character
         }
         if (IsEquipped(item))
             return;
+        if (equippedItems.Contains(item))
+        {
+            Debug.LogWarning($"{item.displayName}은 이미 장착 중입니다.");
+            return;
+        }
 
         switch (item.equipableData.type)
         {
@@ -79,6 +94,10 @@ public class Character
     {
         if (item == null || item.equipableData == null || !IsEquipped(item))
             return;
+        if (equippedItems.Contains(item))
+        {
+            equippedItems.Remove(item);
+        }
 
         switch (item.equipableData.type)
         {
@@ -118,4 +137,35 @@ public class Character
         }
         return total;
     }
+
+    public void RecalculateStats()
+    {
+        Attack = baseAttack;
+        Defense = baseDefense;
+        Hp = baseHp;
+        Critical = baseCritical;
+
+        foreach (var item in equippedItems)
+        {
+            if (item.equipableData != null)
+            {
+                switch (item.equipableData.type)
+                {
+                    case EquipableType.Attack:
+                        Attack += item.equipableData.value;
+                        break;
+                    case EquipableType.Defense:
+                        Defense += item.equipableData.value;
+                        break;
+                    case EquipableType.Hp:
+                        Hp += item.equipableData.value;
+                        break;
+                    case EquipableType.Critical:
+                        Critical += item.equipableData.value;
+                        break;
+                }
+            }
+        }
+    }
+
 }

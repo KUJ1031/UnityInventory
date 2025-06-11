@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using static SaveData;
 
 public class UIInventory : MonoBehaviour
 {
@@ -110,9 +111,9 @@ public class UIInventory : MonoBehaviour
             equipButtonText.text = "해제";
             Debug.Log($"{selectedItem.displayName} 장착됨!");
         }
-
         UpdateInventoryUI();
         ShowStatusInfo(selectedItem);
+        DataSaveLoad.Instance.SaveInventory(slots);
     }
 
     private bool IsItemEquipped(ItemData item)
@@ -140,6 +141,32 @@ public class UIInventory : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void ApplyLoadedInventory(InventorySaveData loadedData)
+    {
+        var character = GameManager.Instance?.PlayerCharacter;
+        for (int i = 0; i < loadedData.inventory.Count && i < slots.Count; i++)
+        {
+            var saveItem = loadedData.inventory[i];
+            ItemData item = Resources.Load<ItemData>("Items/" + saveItem.itemId);
+
+            if (item != null)
+            {
+                InitSlot(slots[i], item, saveItem.quantity);
+                slots[i].equipped = saveItem.isEquipped;
+                slots[i].Set(); // UI 업데이트
+            }
+            if (saveItem.isEquipped)
+            {
+                character?.EquipItem(item);
+            }
+            else
+            {
+                Debug.LogWarning("아이템 불러오기 실패: " + saveItem.itemId);
+            }
+        }
+        UpdateInventoryUI();
     }
 
 }
