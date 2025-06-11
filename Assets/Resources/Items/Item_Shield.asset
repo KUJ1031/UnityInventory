@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2669908729f3a0043803c95084c504f9, type: 3}
   m_Name: Item_Shield
   m_EditorClassIdentifier: 
-  itemId: 
+  itemId: Item_Shield
   displayName: "\uBC29\uD328"
   description: "\uB4E0\uB4E0\uD569\uB2C8\uB2E4."
   type: 0
@@ -20,5 +20,5 @@ MonoBehaviour:
   canStack: 0
   maxStackAmount: 1
   equipableData:
-    type: 0
+    type: 1
     value: 10

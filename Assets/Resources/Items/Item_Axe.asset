@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2669908729f3a0043803c95084c504f9, type: 3}
-  m_Name: Item_Sword
+  m_Name: Item_Axe
   m_EditorClassIdentifier: 
-  itemId: Item_Sword
-  displayName: "\uC5D1\uC2A4\uCE7C\uB9AC\uBC84"
-  description: "\uB0A0\uCE74\uB86D\uC2B5\uB2C8\uB2E4."
+  itemId: Item_Axe
+  displayName: "\uC740\uB3C4\uB07C"
+  description: "\uC0B4\uC9DD \uC2A4\uCCD0\uB3C4 \uCE58\uBA85\uC801\uC785\uB2C8\uB2E4."
   type: 0
-  icon: {fileID: 21300000, guid: 6cd9f1d94f48145428773d838376fcb1, type: 3}
+  icon: {fileID: 21300000, guid: e08b0239dd30aa04186900b172ce007f, type: 3}
   canStack: 0
   maxStackAmount: 1
   equipableData:
-    type: 0
+    type: 3
     value: 10

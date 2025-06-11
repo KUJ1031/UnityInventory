@@ -66,7 +66,7 @@ public class DataSaveLoad : MonoBehaviour
 
             string json = File.ReadAllText(filePath);
             Character loadedCharacter = JsonUtility.FromJson<Character>(json);
-            Debug.Log("캐릭터 데이터 불러오기 완료:\n" + json);
+            Debug.Log("이미 생성된 캐릭터 데이터 불러오기 완료:\n" + json);
             return loadedCharacter;
         }
         else
